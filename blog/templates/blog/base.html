@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/blog.css" %}" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+      <a href="/blog" class="logo">Moje Ulubione Książki Dla Dzieciaków</a>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<div id="sidebar">
+    <h2>O mnie</h2>
+    <img class="foto" src="{% static "img/me_myself_and_I.jpg" %}">
+    <p>Takie tam ważne rzeczy o mnie.</p>
+</div>
+</body>
+</html>

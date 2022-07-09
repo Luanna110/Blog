@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% block title %}My Blog{% endblock %}
+{% block content %}
+{% for post in posts %}
+<div id="one_post">
+    <div class="book_field">
+        <a class="book_img" href="{{ post.get_absolute_url }}">
+            <img src="{{ post.image.url }}" width="100%">
+        </a>
+    </div>
+    <div class="contain">
+        <h2>
+            <a class="post_title" href="{{ post.get_absolute_url }}">
+                {{ post.title }}
+            </a>
+        </h2>
+        <p class="date">
+            Published {{ post.publish }} by {{ post.author }}
+        </p>
+        {{ post.body|truncatewords:30|linebreaks }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
