@@ -5,7 +5,7 @@
 <div id="one_post">
     <div class="book_field">
         <a class="book_img" href="{{ post.get_absolute_url }}">
-            <img src="{{ post.image.url }}" width="100%">
+            <img src="{{ post.image.url }}" width="70%">
         </a>
     </div>
     <div class="contain">
@@ -21,4 +21,5 @@
     </div>
 </div>
 {% endfor %}
+{% include "pagination.html" with page=posts %}
 {% endblock %}

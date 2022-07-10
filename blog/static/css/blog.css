@@ -88,3 +88,9 @@ p.date {
     font-size: 12px;
     font-style: italic;
 }
+
+.pagination {
+    margin:40px 0;
+    color:#006400;
+    font-weight:bold;
+}
