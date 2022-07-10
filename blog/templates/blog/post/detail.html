@@ -1,14 +1,42 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-<h1>{{ post.title }}</h1>
-<p class="date">
-    Published {{ post.publish }} by {{ post.author }}
-</p>
-<div class="book_field">
-    <a class="book_img" href="{{ post.get_absolute_url }}">
-        <img src="{{ post.image.url }}">
-    </a>
-</div>
-{{ post.body|linebreaks }}
+    <h1>{{ post.title }}</h1>
+    <p class="date">
+        Published {{ post.publish }} by {{ post.author }}
+    </p>
+    <div class="book_field">
+        <a class="book_img" href="{{ post.get_absolute_url }}">
+            <img src="{{ post.image.url }}">
+        </a>
+    </div>
+    {{ post.body|linebreaks }}
+
+    {% with comments.count as total_comments %}
+        <h2>skomentowano {{ total_comments }} razy</h2>
+    {% endwith %}
+
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Komentarz {{ forloop.counter }} dodany przez: {{ comment.nazwa }}
+                {{ comment.created }}
+            </p>
+            {{ comment.komentarz|linebreaks }}
+        </div>
+    {% empty %}
+        <p>Brak komentarzy.</p>
+    {% endfor %}
+
+    {% if new_comment %}
+        <h2>Komentarz dodany</h2>
+    {% else %}
+        <h2>Dodaj komentarz</h2>
+        <form method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Dodaj komentarz"></p>
+        </form>
+    {% endif %}
+
 {% endblock %}
